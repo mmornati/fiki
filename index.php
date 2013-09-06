@@ -49,7 +49,7 @@ if (!isset($_SESSION['access']) || $_SESSION['access'] == '') {
 <div class="row">
           <div class="col-lg-4">
 <?php
-$basedir = './data/';
+$basedir = './data';
 if ($handle = opendir($basedir)) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry == "." or $entry == "..") {
