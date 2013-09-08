@@ -3,6 +3,8 @@ session_start();
 if (!isset($_SESSION['access']) || $_SESSION['access'] == '') {
        header('Location: login.php');
 }
+$file='configuration.ini';
+if (!$settings = parse_ini_file($file, TRUE)) throw new exception('Unable to open ' . $file . '.');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +28,7 @@ if (!isset($_SESSION['access']) || $_SESSION['access'] == '') {
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="../" class="navbar-brand"><img width="80px" src="images/logo.png"/></a>
+          <a href="index.php" class="navbar-brand"><img width="80px" src="images/logo.png"/></a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -42,14 +44,33 @@ if (!isset($_SESSION['access']) || $_SESSION['access'] == '') {
         </div>
       </div>
     </div>
-
-
+<?php
+if ($_GET["entry"] and $_GET["subentry"]) {
+    $basedir = $settings["base"]["datadir"];
+    $entry = $_GET["entry"];
+    $subentry = $_GET["subentry"];
+?>    
+<div class="container">
+ <div class="bs-docs-section clearfix">
+  <div class="row">
+   <div class="col-lg-12">
+<?php
+    //echo $basedir.'/'.$entry."/".$subentry;
+    echo(file_get_contents($basedir.'/'.$entry."/".$subentry));
+?>
+   </div>
+  </div>
+ </div>
+</div>
+<?php
+} else {
+?>
     <div class="container">
 <div class="bs-docs-section clearfix">
 <div class="row">
           <div class="col-lg-4">
 <?php
-$basedir = './data';
+$basedir = $settings["base"]["datadir"];
 if ($handle = opendir($basedir)) {
     while (false !== ($entry = readdir($handle))) {
         if ($entry == "." or $entry == "..") {
@@ -71,7 +92,7 @@ if ($handle = opendir($basedir)) {
                   } else {
 		       $title = $subentry;
 		  }
-		  echo '<li class="list-group-item"><a href="'.$sub_path.'">'.$title.'</a></li>';
+		  echo '<li class="list-group-item"><a href="index.php?entry='.$entry.'&subentry='.$subentry.'">'.$title.'</a></li>';
 
                }
             }
@@ -87,7 +108,7 @@ if ($handle = opendir($basedir)) {
 </div></div>
     </div>
     </div>
-
+<?php } ?>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

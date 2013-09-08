@@ -1,7 +1,34 @@
 <?php
 $file='configuration.ini';
 if (!$settings = parse_ini_file($file, TRUE)) throw new exception('Unable to open ' . $file . '.');
+
 function authenticate($user, $password) {
+    global $settings;
+    $type = $settings["auth"]["type"];
+    if ($type == "ldap") {
+        return authenticate_ldap($user, $password);        
+    } else if ($type == "file") {
+        return authenticate_file($user, $password);
+    } else if ($type == "noauth") {
+        $_SESSION['user'] = $user;
+        $_SESSION['access'] = 1;
+
+        return true;
+    }
+
+}
+
+function authenticate_file($user, $password) {
+    global $settings;
+    //TODO: Complete this auth type
+    //
+    $_SESSION['user'] = $user;
+    $_SESSION['access'] = 1;
+
+    return true;
+}
+
+function authenticate_ldap($user, $password) {
     global $settings;
 	// Active Directory server
 	$ldap_host = $settings["ldap"]["ldap_host"];
