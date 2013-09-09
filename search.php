@@ -82,7 +82,6 @@ $scanDir = $settings["base"]["datadir"];
 if(isset($_POST['queryParam'])) {
     $searchString = $_POST['queryParam'];
 }
-echo "---->" . $_POST['queryParam'];
 /*
 if(isset($_POST['spanbegin'])) {
 	
