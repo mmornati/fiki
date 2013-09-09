@@ -19,12 +19,21 @@ function authenticate($user, $password) {
 
 function authenticate_file($user, $password) {
     global $settings;
-    //TODO: Complete this auth type
-    //
-    $_SESSION['user'] = $user;
-    $_SESSION['access'] = 1;
 
-    return true;
+    $auth_file = $settings["file_auth"]["file_name"];
+    if (is_file($auth_file)) {
+        $metadata=yaml_parse_file($auth_file);
+        if (isset($metadata[$user]) and $metadata[$user] == $password) { 
+            $_SESSION['user'] = $user;
+            $_SESSION['access'] = 1;
+
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
 }
 
 function authenticate_ldap($user, $password) {
