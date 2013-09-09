@@ -1,6 +1,5 @@
 <?php
-$file='configuration.ini';
-if (!$settings = parse_ini_file($file, TRUE)) throw new exception('Unable to open ' . $file . '.');
+require_once('config.php');
 
 function authenticate($user, $password) {
     global $settings;

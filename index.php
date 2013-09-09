@@ -3,9 +3,7 @@ session_start();
 if (!isset($_SESSION['access']) || $_SESSION['access'] == '') {
 	header('Location: login.php');
 }
-$file = 'configuration.ini';
-if (!$settings = parse_ini_file($file, TRUE))
-	throw new exception('Unable to open ' . $file . '.');
+require_once('config.php');
 $basedir = $settings["base"]["datadir"];
 ?>
 <!DOCTYPE html>

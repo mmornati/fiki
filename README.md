@@ -16,9 +16,26 @@ each arguments you can have as many html files as you want.
 Fiki will read the '<title>' tag of any page and display it on the Fiki homepage
 (inside the correct argument).
 
-Arguments configuration
+Installation and configuration
 ---
-For any arguments you can create a YAML file to add information for your
+To install Fiki, you just need to copy the project sources into a php enabled
+web server (PHP5 required).
+Then you need to configure the installation creating a ``configuration.ini``
+based on the example.
+
+```bash
+mkdir /etc/fiki
+cp sample.configuration.ini /etc/fiki/configuration.ini
+```
+and changing, inside the new file, the data directory and the authentication
+method to use.
+
+To reference the new configuration.ini file, you need to specify the path where
+you stored it inside the  ``config.php`` file.
+
+Argument configuration
+---
+For any argument you can create a YAML file to add information for your
 arguments.
 By default the folder name is shown on the page as argument name, but, creating
 inside the argument folder a file named ``metadata.yaml`` allow you to add:
