@@ -66,7 +66,7 @@ $startTime = time();
 
 // create object of the class
 require_once('ClassGrepSearch.inc.php');
-require_once('exampleSearchCustomFunctions.php');
+require_once('customFunctions.php');
 $classGrepSearch = ClassGrepSearch::getInstance();
 
 // The extentions to be searched (in this example, the extentions are comma seperated)
