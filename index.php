@@ -82,10 +82,10 @@ echo(file_get_contents($basedir . '/' . $entry . "/html/" . $subentry.".html"));
 	   if (isset($metadata["title"])) {
            	echo('<h3>' . $metadata["title"] . '</h3>');    
 	   } else {
-   	        echo('<h3>' . $arg . '</h3>');
+   	        echo('<h3>' . $entry . '</h3>');
 	   }
 	} else {
-	   echo('<h3>' . $arg . '</h3>');
+	   echo('<h3>' . $entry . '</h3>');
 	} 
 	echo '<div class="bs-example">';
 	echo '<table>';
