@@ -16,6 +16,30 @@ each arguments you can have as many html files as you want.
 Fiki will read the '<title>' tag of any page and display it on the Fiki homepage
 (inside the correct argument).
 
+Arguments configuration
+---
+For any arguments you can create a YAML file to add information for your
+arguments.
+By default the folder name is shown on the page as argument name, but, creating
+inside the argument folder a file named ``metadata.yaml`` allow you to add:
+
+title: the name of the argument to show (shown despite of folder name)
+description: argument content description
+
+Example yaml file:
+```yaml
+---
+title: My first argument
+description: my argument description
+```
+
+Requirements
+---
+To use the Arguments description Yaml file, you should install the PHP Yaml
+librery:
+
+php-pecl-yaml : Support for YAML 1.1 serialization using the LibYAML
+
 
 FikiBootstrap Backend for Asciidoc Build
 ---
@@ -26,11 +50,3 @@ https://github.com/mmornati/fikiboostrap
 
 You can follow the instructions on the project readme file to install it.
 
-In Dev
----
-Actually I'm working on:
-* Argument metadata file to personalize the way an argument will be displayed on Fiki
-  page (for example the name and a little description/logo)
-
-* Order on the page: a way to order projetct and file inside the project on the
-  fiki page
