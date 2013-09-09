@@ -50,30 +50,26 @@ $basedir = $settings["base"]["datadir"];
         </div>
       </div>
     </div>
+     <div class="container">
+      <div class="bs-docs-section clearfix" style="margin-top: 35px;">
+      <div class="row">
+      
 <?php
 if (isset($_GET["entry"]) and isset($_GET["subentry"])) {
     $entry = $_GET["entry"];
     $subentry = $_GET["subentry"];
 ?>    
-<div class="container">
- <div class="bs-docs-section clearfix" style="margin-top: 35px;">
-  <div class="row">
+
    <div class="col-lg-12">
 <?php
 echo "<a href='index.php?entry=".$entry."'>Back</a><br/><br/>";
 echo(file_get_contents($basedir . '/' . $entry . "/html/" . $subentry.".html"));
 ?>
    </div>
-  </div>
- </div>
-</div>
 <?php
 } else if (isset($_GET["entry"]) and !isset($_GET["subentry"])) {
 ?>	
-<div class="container">
- <div class="bs-docs-section clearfix">
-  <div class="row">
-   <div class="col-lg-4">
+   <div class="col-lg-6">
 <?php
 	$entry = $_GET["entry"];
 	$metadata_file = $basedir . '/' . $entry . '/metadata.yaml';
@@ -118,15 +114,9 @@ echo(file_get_contents($basedir . '/' . $entry . "/html/" . $subentry.".html"));
 	echo '</div>';
 ?>   	
    </div>
-  </div>
- </div>
-</div>	
 <?php
 } else {
 ?>
-    <div class="container">
-<div class="bs-docs-section clearfix">
-<div class="row">
           <div class="col-lg-6">
 		<h1>Arguments List</h1>
 <?php
@@ -165,9 +155,26 @@ foreach($arguments as $arg) {
 	
 }
 ?>
-</div></div>
-    </div>
-    </div>
+</div>
+<?php } 
+
+if (!isset($_GET["subentry"])) {
+?>
+
+<div class="col-lg-4 col-lg-offset-1">
+	<form class="bs-example form-horizontal" method="post" action="search.php">
+	<div class="form-group">
+           <label class="control-label" for="queryParam">Search</label>
+           <input class="form-control input-sm" type="text" name="queryParam" id="queryParam">
+        </div>
+	<div class="col-lg-10">
+	      <button class="btn btn-default">Cancel</button> 
+	      <button type="submit" class="btn btn-primary">Search</button> 
+	    </div>
+       </form>
+	
+ </div>
 <?php } ?>
+</div></div></div>
   </body>
 </html>
