@@ -15,7 +15,6 @@ Fiki will read the '<title>' tag of any page and display it on the Fiki homepage
 (inside the correct argument).
 
 ## Installation and configuration
-
 To install Fiki, you just need to copy the project sources into a php enabled
 web server (PHP5 required).
 Then you need to configure the installation creating a **configuration.ini**
